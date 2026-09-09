@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">𝕏</h1>
+
+            <nav>
+                <a href="#">🏠 Home</a>
+                <a href="#">🔍 Explore</a>
+                <a href="#">🔔 Notifications</a>
+                <a href="#">✉ Messages</a>
+                <a href="#">👤 Profile</a>
+            </nav>
+
+            <button class="post-btn">Post</button>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="feed">
+
+            <header>
+                <h2>Home</h2>
+            </header>
+
+            <!-- Create Post -->
+            <section class="create-post">
+                <textarea id="tweetInput"
+                    placeholder="What is happening?!"></textarea>
+
+                <div class="post-actions">
+                    <span id="charCount">0 / 280</span>
+                    <button onclick="addTweet()">Post</button>
+                </div>
+            </section>
+
+            <!-- Tweets -->
+            <section id="tweetContainer">
+
+                <article class="tweet">
+                    <div class="avatar">N</div>
+
+                    <div class="tweet-content">
+                        <h3>Nithya K <span>@nithya</span></h3>
+                        <p>
+                            Building my first Twitter-style application 🚀
+                        </p>
+
+                        <div class="tweet-buttons">
+                            <button onclick="likeTweet(this)">♡ <span>0</span></button>
+                            <button>💬 0</button>
+                            <button>↗ Share</button>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+
+            <input type="text" placeholder="Search">
+
+            <div class="trends">
+                <h2>What's happening</h2>
+
+                <div class="trend">
+                    <small>Trending</small>
+                    <strong>#Technology</strong>
+                    <span>25.4K posts</span>
+                </div>
+
+                <div class="trend">
+                    <small>Trending</small>
+                    <strong>#Coding</strong>
+                    <span>18.2K posts</span>
+                </div>
+
+                <div class="trend">
+                    <small>Trending</small>
+                    <strong>#AI</strong>
+                    <span>15.8K posts</span>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
