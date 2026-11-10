@@ -1,105 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twitter App</title>
-    <link rel="stylesheet" href="style.css">
+<title>Mini Twitter</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f8fa}
+header{background:#1da1f2;color:white;padding:15px;text-align:center}
+.app{display:flex;max-width:1000px;margin:auto}
+.left{width:220px;background:white;padding:20px;border-right:1px solid #ddd}
+.circle{width:65px;height:65px;border-radius:50%;background:#1da1f2;
+color:white;font-size:30px;display:flex;align-items:center;
+justify-content:center;font-weight:bold}
+.profile{padding:15px 0;border-bottom:1px solid #ddd}
+.info{color:#657786;font-size:13px}
+.left button{width:100%;padding:12px;margin:8px 0;border:0;
+background:white;font-size:16px;text-align:left;cursor:pointer}
+.left button:hover{background:#e8f5fd}
+.main{width:600px;background:white}
+.right{width:220px;padding:20px;background:white}
+.box{padding:20px;border-bottom:1px solid #ddd}
+textarea{width:100%;height:70px;padding:10px;border:1px solid #ddd}
+.postbtn,.follow{background:#1da1f2;color:white;border:0;padding:9px 18px;
+border-radius:20px;cursor:pointer;margin-top:8px}
+.post{padding:18px;border-bottom:1px solid #ddd}
+.content{margin:12px 0}
+.actions button{border:0;background:white;cursor:pointer;margin-right:15px}
+.liked{color:red}
+.comment{display:none;margin-top:10px}
+.comment input{padding:8px;width:75%}
+.page{display:none;padding:20px}
+.active{display:block}
+@media(max-width:700px){
+.left{width:150px}.right{display:none}.main{width:100%}
+}
+</style>
 </head>
-
 <body>
-
-    <div class="container">
-
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h1 class="logo">𝕏</h1>
-
-            <nav>
-                <a href="#">🏠 Home</a>
-                <a href="#">🔍 Explore</a>
-                <a href="#">🔔 Notifications</a>
-                <a href="#">✉ Messages</a>
-                <a href="#">👤 Profile</a>
-            </nav>
-
-            <button class="post-btn">Post</button>
-        </aside>
-
-        <!-- Main Feed -->
-        <main class="feed">
-
-            <header>
-                <h2>Home</h2>
-            </header>
-
-            <!-- Create Post -->
-            <section class="create-post">
-                <textarea id="tweetInput"
-                    placeholder="What is happening?!"></textarea>
-
-                <div class="post-actions">
-                    <span id="charCount">0 / 280</span>
-                    <button onclick="addTweet()">Post</button>
-                </div>
-            </section>
-
-            <!-- Tweets -->
-            <section id="tweetContainer">
-
-                <article class="tweet">
-                    <div class="avatar">N</div>
-
-                    <div class="tweet-content">
-                        <h3>Nithya K <span>@nithya</span></h3>
-                        <p>
-                            Building my first Twitter-style application 🚀
-                        </p>
-
-                        <div class="tweet-buttons">
-                            <button onclick="likeTweet(this)">♡ <span>0</span></button>
-                            <button>💬 0</button>
-                            <button>↗ Share</button>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
-
-        </main>
-
-        <!-- Right Sidebar -->
-        <aside class="right-sidebar">
-
-            <input type="text" placeholder="Search">
-
-            <div class="trends">
-                <h2>What's happening</h2>
-
-                <div class="trend">
-                    <small>Trending</small>
-                    <strong>#Technology</strong>
-                    <span>25.4K posts</span>
-                </div>
-
-                <div class="trend">
-                    <small>Trending</small>
-                    <strong>#Coding</strong>
-                    <span>18.2K posts</span>
-                </div>
-
-                <div class="trend">
-                    <small>Trending</small>
-                    <strong>#AI</strong>
-                    <span>15.8K posts</span>
-                </div>
-            </div>
-
-        </aside>
-
-    </div>
-
-    <script src="script.js"></script>
-
+<header>
+<h1> Mini Twitter</h1>
+</header>
+<div class="app">
+<!-- LEFT SIDEBAR -->
+<div class="left">
+<div class="profile">
+<div class="circle">R</div>
+<h3>Roshini</h3>
+<div class="info">rosh@gmail.com</div>
+<p>
+<b>356</b> Followers ·
+<b>128</b> Following
+</p>
+<p>B.Tech IT Student</p>
+<p>Graphic Designer 🎨</p>
+<p>A passionate UI/UX Designer and IT student.I enjoy creating social media posts,logos,posters
+     and digital graphics</p>
+</div>
+<button onclick="page('home')">🏠 Home</button>
+<button onclick="page('settings')">⚙ Settings</button>
+</div>
+<!-- MAIN -->
+<div class="main">
+<!-- HOME -->
+<div id="home" class="page active">
+<div class="box">
+<textarea id="text"
+placeholder="What's happening?"></textarea>
+<br>
+<button class="postbtn" onclick="post()">Post</button>
+</div>
+<div id="posts">
+<!-- POST 1 -->
+<div class="post">
+<b>Rithanya</b>
+<div class="info">
+rithu@gmail.com · 20 min ago
+</div>
+<div class="content">
+Hello everyone! Welcome to Mini Twitter 🚀
+</div>
+<div class="actions">
+<button onclick="like(this)">
+❤️ <span>10</span>
+</button>
+<button onclick="comment(this)">
+💬 Comment
+</button>
+</div>
+<div class="comment">
+<input placeholder="Write a comment">
+<button onclick="add(this)">Send</button>
+</div>
+</div>
+<!-- POST 2 -->
+<div class="post">
+<b>Archana</b>
+<div class="info">
+achu@gmail.com · 1 hour ago
+</div>
+<div class="content">
+Learning JavaScript is fun! 💻
+</div>
+<div class="actions">
+<button onclick="like(this)">
+❤️ <span>7</span>
+</button>
+<button onclick="comment(this)">
+💬 Comment
+</button>
+</div>
+<div class="comment">
+<input placeholder="Write a comment">
+<button onclick="add(this)">Send</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SETTINGS -->
+<div id="settings" class="page">
+<h2>Settings</h2>
+<p>👤 Account</p>
+<p>🔐 Privacy</p>
+<p>🔔 Notifications</p>
+<p>🎨 Appearance</p>
+<p>🚪 Logout</p>
+</div>
+</div>
+<!-- RIGHT SIDEBAR -->
+<div class="right">
+<h3>Who to follow</h3>
+<p>
+<b>Anu</b><br>@anu
+<button class="follow" onclick="follow(this)">
+Follow
+</button>
+</p>
+<p>
+<b>Kishore</b><br>@kishore
+<button class="follow" onclick="follow(this)">
+Follow
+</button>
+</p>
+<p>
+<b>Suresh</b><br>@suresh
+<button class="follow" onclick="follow(this)">
+Follow
+</button>
+</p>
+</div>
+</div>
+<script>
+function page(x){
+document.querySelectorAll('.page')
+.forEach(p=>p.classList.remove('active'));
+document.getElementById(x)
+.classList.add('active');
+}
+function post(){
+let text=document.getElementById('text')
+.value.trim();
+if(!text)
+return alert("Write something!");
+let p=document.createElement('div');
+p.className='post';
+p.innerHTML=`
+<b>Roshini</b>
+<div class="info">
+rosh@gmail.com · Just now
+</div>
+<div class="content">${text}</div>
+<div class="actions">
+<button onclick="like(this)">
+❤️ <span>0</span>
+</button>
+<button onclick="comment(this)">
+💬 Comment
+</button>
+<button onclick="this.closest('.post').remove()">
+🗑 Delete
+</button>
+</div>
+<div class="comment">
+<input placeholder="Write a comment">
+<button onclick="add(this)">Send</button>
+</div>`;
+document.getElementById('posts')
+.prepend(p);
+document.getElementById('text').value='';
+}
+function like(b){
+let n=b.querySelector('span');
+n.innerText=b.classList.toggle('liked')?
+++n.innerText:--n.innerText;
+}
+function comment(b){
+let c=b.closest('.post')
+.querySelector('.comment');
+c.style.display=
+c.style.display=='block'?'none':'block';
+}
+function add(b){
+let i=b.previousElementSibling;
+if(i.value){
+let p=document.createElement('p');
+p.innerHTML=
+'💬 <b>Roshini:</b> '+i.value;
+b.parentElement.append(p);
+i.value='';
+}
+}
+function follow(b){
+b.innerText=
+b.innerText=='Follow'?
+'Following':'Follow';
+}
+</script>
 </body>
 </html>
